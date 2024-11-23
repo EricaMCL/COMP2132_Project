@@ -3,9 +3,12 @@ const btn_group_letters = document.getElementById("group_btn_letters")
 const hangman_word = document.getElementById("hangman_word")
 const hangman_hint = document.getElementById("hangman_hint")
 const hangman_image = document.getElementById("hangman_image")
-const hangman_answer = "apple"
-const entered_letters = []
+const btn_new_game = document.getElementById("btn_new_game")
+let entered_letters = []
 let num_incorrect_guesses = 0
+let correct_guesses = 0
+let restartGame = false
+let isWin = false
 
 
 hangman_image.innerHTML = `<a><img id="hangman_image_1" src="../images/hangman_${num_incorrect_guesses}.png" alt="hangman"></a>`
@@ -20,21 +23,28 @@ function letter_btn_generator(letter) {
     return `<button class="btn_letters" id="btn_letter_${letter}" type="button" onclick="btnClicked('${letter}')">${letter.toUpperCase()}</button>`
 }
 
-//generates the word guessing section with hidden answer
+
+let letter;
 for (letter of letters) {
     const strLetter = letter_btn_generator(letter)
     btn_group_letters.innerHTML += strLetter
 }
 
-for (letter of hangman_answer.split(''))
-{
+//generates the word guessing section with hidden answer
+const hangman_answer = "apple"
+const hangman_answer_array = hangman_answer.split('')
+const required_num_correct_guesses = new Set(hangman_answer_array).size
+console.log(required_num_correct_guesses)
+
+for (letter of hangman_answer_array) {
     hangman_word.innerHTML += `<section class="hangman_answer"><h3 class="invisible_answer">${letter}</h3></section>`
 }
 
+
+
 //btnClicked function
 //check if the letter entered match any letter of the answer
-function btnClicked(letterEntered)
-{
+function btnClicked(letterEntered) {
     let hangman_word_updated = ""
     const btn_letter_clicked = document.getElementById(`btn_letter_${letterEntered}`)
     btn_letter_clicked.style.backgroundColor = "lightgray"
@@ -42,8 +52,7 @@ function btnClicked(letterEntered)
     btn_letter_clicked.disabled = true
     entered_letters.push(letterEntered)
 
-    for (let letter of hangman_answer)
-    {
+    for (let letter of hangman_answer) {
         if (entered_letters.includes(letter)) {
             hangman_word_updated += `<section class="hangman_answer"><h3 class="visible_answer">${letter}</h3></section>`
         } else {
@@ -51,13 +60,53 @@ function btnClicked(letterEntered)
         }
     }
 
-if(hangman_word.innerHTML === hangman_word_updated){num_incorrect_guesses ++}
-hangman_word.innerHTML = hangman_word_updated
+    if (hangman_word.innerHTML === hangman_word_updated) {
+        num_incorrect_guesses++
+    } else {
+        correct_guesses++
+    }
+    hangman_word.innerHTML = hangman_word_updated
     console.log(num_incorrect_guesses)
     hangman_image.innerHTML = `<a><img id="hangman_image_1" src="../images/hangman_${num_incorrect_guesses}.png" alt="hangman"></a>`
+
+    if (correct_guesses === required_num_correct_guesses) {
+        isWin = true
+        restartGame = true
+        console.log("WIN")
+    } else if (num_incorrect_guesses >= 6) {
+        restartGame = true
+        console.log("LOSE")
+    }
+
+
+    if (restartGame) {
+        btn_group_letters.innerHTML = ""
+        entered_letters = []
+        for (letter of letters) {
+            const strLetter = letter_btn_generator(letter)
+            btn_group_letters.innerHTML += strLetter
+        }
+    }
+
+
+    btn_new_game.addEventListener("click", function ()
+{
+    restartGame = true
+    console.log("123")
+})
 }
 
-if(num_incorrect_guesses >= 6){}
+
+
+
+
+
+
+
+
+
+
+
 
 
 
