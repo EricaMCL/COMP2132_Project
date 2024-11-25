@@ -72,6 +72,7 @@ btn_new_game.addEventListener("click", function () {
     num_incorrect_guesses = 0
     gameOver = false
     correct_guesses = 0
+    pop_up_div.style.opacity = 0
     resetAnswerHint()
     resetImage()
     resetLetterBtn()
@@ -79,7 +80,7 @@ btn_new_game.addEventListener("click", function () {
 
 // popup close button
 btn_close.addEventListener('click', function(){
-    pop_up_div.style.display = 'none'
+    pop_up_div.style.opacity = 0
 });
 
 // Reset hangman answer and hint
@@ -152,11 +153,13 @@ function btnClicked(letterEntered) {
         gameOver = true
         pop_up_game_result.innerHTML = gameA.gameResultHTML(true)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
+        pop_up_div.style.opacity = 1
         console.log("WIN")
     } else if (num_incorrect_guesses >= max_incorrect_guesses) {
         gameOver = true
-        op_up_game_result.innerHTML = gameA.gameResultHTML(true)
+        pop_up_game_result.innerHTML = gameA.gameResultHTML(false)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
+        pop_up_div.style.opacity = 1
         console.log("LOSE")
     }
 

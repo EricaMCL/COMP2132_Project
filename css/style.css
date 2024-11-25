@@ -310,33 +310,44 @@ button
 {
     position: absolute;
     display: inline-block;
-    width: 350px;
+    width: 45%;
     height: 150px;
-    border: #ffffff;
-    border-style: solid;
+    border: solid #ffffff;
     border-radius: 10px;
     padding: 3px;
-    background-color: rgb(143, 188, 143);
+    background-color: rgba(239, 186, 88, 0.95);
     z-index: 1;
-    bottom: 50%;
-    left: 34%;
-    opacity: 1;
+    bottom: 44% ;
+    left: 26%;
+    opacity: 0;
 }
 
 #pop_up_title
 {
     display: grid;
-    grid-template-columns: 90% 10%;
-    grid-template-rows: 50% 50%;
-
+    grid-template-rows: 35% 35% 30%;
+    justify-content: center;
+    align-content: center;
 }
+
+#pop_up_title h3, #pop_up_title h1
+{
+    color: rgb(3, 78, 60);
+}
+
 #btn-close
 {
     padding: 3px;
-    border: #004d57;
-    border-radius: 2px;
-    background-color: rgba(197, 222, 197, 0.66);
-    border-style: solid;
+    border-radius: 3px;
+    background-color: rgba(236, 243, 233, 0.77);
+    border: solid rgba(0, 77, 87, 0.56);
+    margin: 2px;
+    max-width: 80px;
+    max-height: 30px;
+    font-size: medium;
+    justify-self: center;
+    color: #066b57;
+
 }
 
 #btn-close:hover
