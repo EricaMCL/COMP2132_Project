@@ -4,63 +4,117 @@ const hangman_word = document.getElementById("hangman_word")
 const hangman_hint = document.getElementById("hangman_hint")
 const hangman_image = document.getElementById("hangman_image")
 const btn_new_game = document.getElementById("btn_new_game")
+const btn_close = document.getElementById("btn-close")
+const pop_up_div = document.getElementById("pop_up_div")
+const pop_up_game_result = document.getElementById("pop_up_game_result")
+const pop_up_game_result_answer = document.getElementById("pop_up_game_result_answer")
 let entered_letters = []
 let num_incorrect_guesses = 0
 let correct_guesses = 0
 let gameOver = false
-let restartGame = false
 let isWin = false
 let hangman_answer = ""
+let max_incorrect_guesses = 6
 
+
+// Create object htmlUpdated that includes html update methods
+class htmlUpdated
+{
+    imageHTML(numOfIncorrectGuesses)
+    {
+        return `<a><img id="hangman_image_1" src="../images/hangman_${numOfIncorrectGuesses}.png" alt="hangman"></a>`
+    }
+
+    wordHTML(isVisible, answerChar)
+    {
+        if(isVisible)
+        {
+            return `<section class="hangman_answer"><h3 class="visible_answer">${answerChar}</h3></section>`
+        }
+        else
+        {
+            return `<section class="hangman_answer"><h3 class="invisible_answer">${answerChar}</h3></section>`
+        }
+    }
+
+    btnHTML(letter)
+    {
+        return `<button class="btn_letters" id="btn_letter_${letter}" type="button" onclick="btnClicked ('${letter}')">${letter.toUpperCase()}</button>`
+    }
+
+    hintHTML(hint)
+    {
+        return `<p>${hint}</p>`
+    }
+
+    gameResultHTML(isWin)
+    {
+        if(isWin) {return "YOU WIN!"}
+        else{return "YOU LOSE!"}
+    }
+
+    gameResultAnswer(answer)
+    {
+        return "The answer is " + answer + "!"
+    }
+}
+
+
+const gameA = new htmlUpdated()
 resetAnswerHint()
 resetImage()
 resetLetterBtn()
 
-
+// New Game
 btn_new_game.addEventListener("click", function () {
     entered_letters = []
     btn_group_letters.innerHTML = ""
     num_incorrect_guesses = 0
     gameOver = false
     correct_guesses = 0
+    resetAnswerHint()
     resetImage()
     resetLetterBtn()
-    resetAnswerHint()
-
 })
 
+// popup close button
+btn_close.addEventListener('click', function(){
+    pop_up_div.style.display = 'none'
+});
 
+// Reset hangman answer and hint
 function resetAnswerHint() {
     fetch("../data/data.json")
         .then(function (response) {
             return response.json();
         })
-        .then(function (myJson) {
+        .then(function (data) {
             hangman_word.innerHTML = ""
-            const a = myJson[(Math.floor(Math.random() * myJson.length))]
-            console.log(a);
-            console.log(a['answer'])
-            console.log(a['hint'])
-            hangman_hint.innerHTML = `<p>${a['hint']}</p>`
-            hangman_answer = a['answer']
+            const hangmanData = data[(Math.floor(Math.random() * data.length))]
+            console.log(hangmanData);
+            hangman_hint.innerHTML = gameA.hintHTML(hangmanData['hint'])
+            hangman_answer = hangmanData['answer']
             const hangman_answer_array = hangman_answer.split('')
             for (let answer_char of hangman_answer_array) {
-                hangman_word.innerHTML += `<section class="hangman_answer"><h3 class="invisible_answer">${answer_char}</h3></section>`
+                hangman_word.innerHTML += gameA.wordHTML(false, answer_char)
+                console.log(gameA.wordHTML(false, answer_char))
+
             }
         });
 }
 
+// Reset image according to the number of incorrect guesses
 function resetImage() {
-    hangman_image.innerHTML = `<a><img id="hangman_image_1" src="../images/hangman_${num_incorrect_guesses}.png" alt="hangman"></a>`
+    hangman_image.innerHTML = gameA.imageHTML(num_incorrect_guesses)
 }
 
-
+// Reset letter buttons
 function resetLetterBtn() {
     const letters = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m",
         "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     let letter;
     for (letter of letters) {
-        const strLetter = `<button class="btn_letters" id="btn_letter_${letter}" type="button" onclick="btnClicked ('${letter}')">${letter.toUpperCase()}</button>`
+        const strLetter = gameA.btnHTML(letter)
         btn_group_letters.innerHTML += strLetter
     }
 }
@@ -79,9 +133,9 @@ function btnClicked(letterEntered) {
     const required_num_correct_guesses = new Set(hangman_answer_array).size
     for (let letter of hangman_answer) {
         if (entered_letters.includes(letter)) {
-            hangman_word_updated += `<section class="hangman_answer"><h3 class="visible_answer">${letter}</h3></section>`
+            hangman_word_updated += gameA.wordHTML(true, letter)
         } else {
-            hangman_word_updated += `<section class="hangman_answer"><h3 class="invisible_answer">${letter}</h3></section>`
+            hangman_word_updated += gameA.wordHTML(false, letter)
         }
     }
 
@@ -92,14 +146,17 @@ function btnClicked(letterEntered) {
     }
     hangman_word.innerHTML = hangman_word_updated
     console.log(num_incorrect_guesses)
-    hangman_image.innerHTML = `<a><img id="hangman_image_1" src="../images/hangman_${num_incorrect_guesses}.png" alt="hangman"></a>`
+    hangman_image.innerHTML = gameA.imageHTML(num_incorrect_guesses)
 
     if (correct_guesses === required_num_correct_guesses) {
-        isWin = true
         gameOver = true
+        pop_up_game_result.innerHTML = gameA.gameResultHTML(true)
+        pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         console.log("WIN")
-    } else if (num_incorrect_guesses >= 6) {
+    } else if (num_incorrect_guesses >= max_incorrect_guesses) {
         gameOver = true
+        op_up_game_result.innerHTML = gameA.gameResultHTML(true)
+        pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         console.log("LOSE")
     }
 

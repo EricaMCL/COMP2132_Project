@@ -306,6 +306,44 @@ button
 
 }
 
+#pop_up_div
+{
+    position: absolute;
+    display: inline-block;
+    width: 350px;
+    height: 150px;
+    border: #ffffff;
+    border-style: solid;
+    border-radius: 10px;
+    padding: 3px;
+    background-color: rgb(143, 188, 143);
+    z-index: 1;
+    bottom: 50%;
+    left: 34%;
+    opacity: 1;
+}
+
+#pop_up_title
+{
+    display: grid;
+    grid-template-columns: 90% 10%;
+    grid-template-rows: 50% 50%;
+
+}
+#btn-close
+{
+    padding: 3px;
+    border: #004d57;
+    border-radius: 2px;
+    background-color: rgba(197, 222, 197, 0.66);
+    border-style: solid;
+}
+
+#btn-close:hover
+{
+    background-color: rgba(255, 255, 255, 0.47);
+}
+
 
 @media (min-width: 750px) {
     #main_grid {
