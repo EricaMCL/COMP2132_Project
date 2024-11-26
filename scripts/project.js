@@ -8,11 +8,12 @@ const btn_close = document.getElementById("btn-close")
 const pop_up_div = document.getElementById("pop_up_div")
 const pop_up_game_result = document.getElementById("pop_up_game_result")
 const pop_up_game_result_answer = document.getElementById("pop_up_game_result_answer")
+let animationFrameHandler;
+let gameResultAnimation;
 let entered_letters = []
 let num_incorrect_guesses = 0
 let correct_guesses = 0
 let gameOver = false
-let isWin = false
 let hangman_answer = ""
 let max_incorrect_guesses = 6
 
@@ -164,12 +165,14 @@ function btnClicked(letterEntered) {
         pop_up_game_result.innerHTML = gameA.gameResultHTML(true)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         pop_up_div.style.opacity = 1
+        gameResultAnimation = requestAnimationFrame(popupAnimation)
         console.log("WIN")
     } else if (num_incorrect_guesses >= max_incorrect_guesses) {
         gameOver = true
         pop_up_game_result.innerHTML = gameA.gameResultHTML(false)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         pop_up_div.style.opacity = 1
+        gameResultAnimation = requestAnimationFrame(popupAnimation)
         console.log("LOSE")
     }
 
@@ -182,11 +185,26 @@ function btnClicked(letterEntered) {
             btn_letter.disabled = true
             btn_new_game.disabled = true
         }
-
-
     }
-
 }
+
+let resultColorRed = true
+function popupAnimation()
+{
+    setTimeout(function ()
+    {
+    if(resultColorRed)
+    {
+    pop_up_game_result.style.color = "green";
+    resultColorRed = false
+    }
+    else
+    {
+        pop_up_game_result.style.color = "red"
+        resultColorRed = true
+    }
+    gameResultAnimation = requestAnimationFrame(popupAnimation)
+},750)}
 
 
 
