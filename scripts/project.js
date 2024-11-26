@@ -78,9 +78,19 @@ btn_new_game.addEventListener("click", function () {
     resetLetterBtn()
 })
 
-// popup close button
+// popup play again button
 btn_close.addEventListener('click', function(){
     pop_up_div.style.opacity = 0
+    entered_letters = []
+    btn_group_letters.innerHTML = ""
+    num_incorrect_guesses = 0
+    gameOver = false
+    correct_guesses = 0
+    pop_up_div.style.opacity = 0
+    btn_new_game.disabled = false
+    resetAnswerHint()
+    resetImage()
+    resetLetterBtn()
 });
 
 // Reset hangman answer and hint
@@ -170,6 +180,7 @@ function btnClicked(letterEntered) {
             btn_letter_clicked.style.backgroundColor = "lightgray"
             btn_letter_clicked.style.color = "gray"
             btn_letter.disabled = true
+            btn_new_game.disabled = true
         }
 
 

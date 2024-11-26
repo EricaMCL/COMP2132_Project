@@ -209,7 +209,8 @@ button
     background-color: rgba(143, 188, 143, 0.37);
     margin: 3px;
     border-radius: 2px;
-    border-width: 0.5px;
+    border-width: 1px;
+    border-color: rgba(0, 128, 0, 0.45);
     padding:10px;
     font-size: large;
 }
@@ -287,11 +288,42 @@ button
     visibility: visible;
 }
 
+#group_btn_letters
+{
+    display:grid;
+    grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+    grid-template-rows: 33% 33% 33%;
+    justify-content: center;
+}
+
+#group_btn_letters button
+{
+    height: 40px;
+    width: 40px;
+    justify-self: center;
+    align-self: center;
+    margin:5px;
+}
+
+#group_btn_letters button:hover
+{
+    background-color: greenyellow;
+}
+
 
 #btn_new_game
 {
+    font-family: "VarelaRound-Regular", sans-serif;
     display: block;
     justify-self: center;
+    background-color: cornsilk;
+    border-radius: 5px;
+}
+
+#btn_new_game:hover
+{
+    background-color:hotpink;
+    color:whitesmoke;
 }
 
 #hangman_hint
@@ -342,7 +374,7 @@ button
     background-color: rgba(236, 243, 233, 0.77);
     border: solid rgba(0, 77, 87, 0.56);
     margin: 2px;
-    max-width: 80px;
+    max-width: 150px;
     max-height: 30px;
     font-size: medium;
     justify-self: center;
@@ -356,20 +388,12 @@ button
 }
 
 
-@media (min-width: 750px) {
-    #main_grid {
-        display: grid;
-        grid-template-columns: 65% 35%;
-    }
+@media (min-width: 700px) {
+    #group_btn_letters
+{
+    grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7%;
+}}
 
-}
 
-@media (min-width: 850px) {
-    #main_grid {
-        display: grid;
-        grid-template-columns: 70% 30%;
-    }
-
-}
 
 
