@@ -8,7 +8,6 @@ const btn_close = document.getElementById("btn-close")
 const pop_up_div = document.getElementById("pop_up_div")
 const pop_up_game_result = document.getElementById("pop_up_game_result")
 const pop_up_game_result_answer = document.getElementById("pop_up_game_result_answer")
-let animationFrameHandler;
 let gameResultAnimation;
 let entered_letters = []
 let num_incorrect_guesses = 0
@@ -16,6 +15,7 @@ let correct_guesses = 0
 let gameOver = false
 let hangman_answer = ""
 let max_incorrect_guesses = 6
+let timeOut;
 
 
 // Create object htmlUpdated that includes html update methods
@@ -163,6 +163,7 @@ function btnClicked(letterEntered) {
         pop_up_game_result.innerHTML = gameA.gameResultHTML(true)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         pop_up_div.style.opacity = 1
+        clearTimeout(timeOut)
         gameResultAnimation = requestAnimationFrame(popupAnimation)
         console.log("WIN")
     } else if (num_incorrect_guesses >= max_incorrect_guesses) {
@@ -170,6 +171,7 @@ function btnClicked(letterEntered) {
         pop_up_game_result.innerHTML = gameA.gameResultHTML(false)
         pop_up_game_result_answer.innerHTML = gameA.gameResultAnswer(hangman_answer)
         pop_up_div.style.opacity = 1
+        clearTimeout(timeOut)
         gameResultAnimation = requestAnimationFrame(popupAnimation)
         console.log("LOSE")
     }
@@ -189,20 +191,16 @@ function btnClicked(letterEntered) {
 let resultColorRed = true
 function popupAnimation()
 {
-    setTimeout(function ()
-    {
-    if(resultColorRed)
-    {
-    pop_up_game_result.style.color = "green";
-    resultColorRed = false
-    }
-    else
-    {
-        pop_up_game_result.style.color = "red"
-        resultColorRed = true
-    }
-    gameResultAnimation = requestAnimationFrame(popupAnimation)
-},750)}
+    timeOut = setTimeout(function () {
+        if (resultColorRed) {
+            pop_up_game_result.style.color = "green";
+            resultColorRed = false
+        } else {
+            pop_up_game_result.style.color = "red"
+            resultColorRed = true
+        }
+        gameResultAnimation = requestAnimationFrame(popupAnimation)
+    }, 750)}
 
 
 
