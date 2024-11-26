@@ -1,0 +1,338 @@
+@font-face {
+	 font-family: 'VarelaRound-Regular';
+	 src: url('../font/VarelaRound-Regular.woff2') format('woff2');
+	 font-weight: Bold;
+	 font-style: normal;
+}
+ @font-face {
+	 font-family: 'JosefinSans';
+	 src: url('../font/JosefinSans-VariableFont_wght.woff2') format('woff2');
+	 font-weight: normal;
+	 font-style: normal;
+}
+/*group selectors for shared styles*/
+ html {
+	 font-family: "VarelaRound-Regular", sans-serif;
+	 font-size: 1em;
+	 background-color: #fff;
+	 margin: auto;
+	 min-width: 320px;
+	 max-width: 1920px;
+}
+ h1 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+	 margin: 20px;
+	 font-size: 30px;
+	 font-weight: bolder;
+	 text-align: center;
+}
+ h2 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+	 display: block;
+	 padding: 2px;
+	 justify-self: center;
+}
+ h3 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+	 display: block;
+	 padding: 2px;
+	 justify-self: center;
+}
+ h4 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+	 display: block;
+	 padding: 2px;
+	 justify-self: center;
+}
+ h5 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+}
+ h6 {
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #009b7d;
+}
+ header {
+	 display: grid;
+	 justify-content: center;
+	 justify-items: center;
+	 padding: 10px;
+	 height: auto;
+	 background-color: #ececea;
+}
+ footer {
+	 background-color: #ececea;
+	 color: #009b7d;
+	 padding: 10px 5px 5px;
+	 display: flex;
+	 flex-direction: row;
+	 height: 60px;
+}
+ footer h2 {
+	 color: #009b7d;
+}
+ footer h3 {
+	 color: #009b7d;
+}
+ main {
+	 padding: 5px;
+	 background-color: #fff;
+	 flex: 1;
+	 margin: 15px;
+}
+ section {
+	 border-style: solid;
+	 border-width: 1px;
+	 border-color: #fff;
+	 padding: 5px;
+	 background-color: darkred;
+	 color: #fff;
+}
+ img {
+	 border-color: #fff;
+	 max-height: 300px;
+}
+ p {
+	 margin: 10px;
+}
+ nav {
+	 justify-content: center;
+	 border-width: 1px;
+	 border-bottom: rgba(128, 128, 128, 0.27);
+	 border-bottom-style: solid;
+}
+ a {
+	 color: #009b7d;
+	 text-decoration-style: dashed;
+}
+ a:hover {
+	 color: #009b7d;
+	 text-decoration-style: dashed;
+	 background-color: rgba(173, 216, 230, 0.50);
+}
+ a:focus {
+	 color: indianred;
+}
+ a:active {
+	 color: indianred;
+	 text-decoration-style: solid;
+}
+ article {
+	 padding: 10px;
+	 border: 1px solid lightgray;
+	 border-radius: 1px;
+	 background-color: #fff;
+	 color: black;
+	 margin: 5px;
+}
+ ol {
+	 list-style-type: decimal;
+}
+ ul {
+	 max-height: 130px;
+	 max-width: 80%;
+	 list-style-type: none;
+	 display: grid;
+	 grid-template-columns: 60px 60px 60px 60px 60px;
+	 grid-template-rows: 10px;
+	 background-color: #066b57;
+	 padding: 20px;
+	 border-radius: 10px;
+	 border: double #e13030;
+}
+ li {
+	 grid-row-start: 1;
+	 float: left;
+}
+ iframe {
+	 width: 100%;
+}
+ table {
+	 border-collapse: collapse;
+	 margin-top: 20px;
+	 width: 100%;
+	 border: 2px solid #067c06;
+	 text-align: center;
+}
+ td {
+	 border: 2px solid #067c06;
+	 text-align: center;
+	 font-weight: lighter;
+	 color: rgba(128, 128, 128, 1);
+}
+ th {
+	 border: 2px solid #067c06;
+	 text-align: center;
+	 font-weight: bolder;
+	 background-color: rgba(173, 216, 230, 0.31);
+}
+ blockquote {
+	 border: darkolivegreen 2px solid;
+	 border-radius: 5px;
+	 background-color: rgba(141, 197, 114, 0.20);
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #013986;
+	 text-align: center;
+	 font-weight: bolder;
+}
+ pre {
+	 border: #010d5e 2px solid;
+	 border-radius: 5px;
+	 background-color: rgba(114, 115, 197, 0.13);
+	 font-family: JosefinSans, SansSerif, serif;
+	 color: #013986;
+	 font-weight: bolder;
+	 padding: 10px;
+}
+ fieldset {
+	 border-style: none;
+}
+ button {
+	 background-color: rgba(143, 188, 143, 0.37);
+	 margin: 3px;
+	 border-radius: 2px;
+	 border-width: 1px;
+	 border-color: rgba(0, 128, 0, 0.45);
+	 padding: 10px;
+	 font-size: large;
+}
+ .header_icons {
+	 grid-area: 0.5;
+	 color: lightcyan;
+}
+ .wrapper {
+	 display: flex;
+	 flex-direction: column;
+	 min-height: 100vh;
+	 max-width: 1024px;
+	 margin: auto;
+}
+ .wrapper div {
+	 margin-bottom: 5px;
+}
+ .img_container {
+	 text-align: center;
+	 color: #fff;
+}
+ #logo {
+	 border-style: none;
+	 max-height: 120px;
+}
+ #footer_logo {
+	 height: 90%;
+	 border-style: none;
+}
+ #footer_content {
+	 text-align: center;
+	 width: 100%;
+}
+ #footer_content h4 {
+	 color: #009b7d;
+}
+ #footer_content p {
+	 color: #009b7d;
+}
+ #hangman_word {
+	 display: flex;
+	 justify-content: center;
+}
+ #hangman_word section {
+	 background-color: transparent;
+	 border-bottom: darkred;
+	 border-style: solid;
+	 border-width: 2px;
+	 margin-right: 5px;
+	 margin-left: 5px;
+}
+ .invisible_answer {
+	 margin: 2px;
+	 visibility: hidden;
+}
+ .visible_answer {
+	 margin: 2px;
+	 visibility: visible;
+}
+ #group_btn_letters {
+	 display: grid;
+	 grid-template-columns: 10% 10% 10% 10% 10% 10% 10% 10% 10%;
+	 grid-template-rows: 33% 33% 33%;
+	 justify-content: center;
+}
+ #group_btn_letters button {
+	 height: 40px;
+	 width: 40px;
+	 justify-self: center;
+	 align-self: center;
+	 margin: 5px;
+}
+ #group_btn_letters button:hover {
+	 background-color: greenyellow;
+}
+ #btn_new_game {
+	 font-family: "VarelaRound-Regular", sans-serif;
+	 display: block;
+	 justify-self: center;
+	 background-color: cornsilk;
+	 border-radius: 5px;
+}
+ #btn_new_game:hover {
+	 background-color: hotpink;
+	 color: whitesmoke;
+}
+ #hangman_hint {
+	 justify-self: center;
+}
+ #hangman_image {
+	 display: flex;
+	 justify-content: center;
+}
+ #pop_up_div {
+	 position: absolute;
+	 display: inline-block;
+	 width: 45%;
+	 height: 150px;
+	 border: solid #fff;
+	 border-radius: 10px;
+	 padding: 3px;
+	 background-color: rgba(239, 186, 88, 0.95);
+	 z-index: 1;
+	 bottom: 44%;
+	 left: 26%;
+	 opacity: 0;
+}
+ #pop_up_title {
+	 display: grid;
+	 grid-template-rows: 35% 35% 30%;
+	 justify-content: center;
+	 align-content: center;
+}
+ #pop_up_title h3 {
+	 color: #034e3c;
+}
+ #pop_up_title h1 {
+	 color: #034e3c;
+}
+ #btn-close {
+	 padding: 3px;
+	 border-radius: 3px;
+	 background-color: rgba(236, 243, 233, 0.77);
+	 border: solid rgba(0, 77, 87, 0.56);
+	 margin: 2px;
+	 max-width: 150px;
+	 max-height: 30px;
+	 font-size: medium;
+	 justify-self: center;
+	 color: #066b57;
+}
+ #btn-close:hover {
+	 background-color: rgba(255, 255, 255, 0.47);
+}
+ @media (min-width: 700px) {
+	 #group_btn_letters {
+		 grid-template-columns: 7% 7% 7% 7% 7% 7% 7% 7% 7%;
+	}
+}
