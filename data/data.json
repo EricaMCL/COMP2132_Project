@@ -1,22 +1,34 @@
 [
   {
     "answer": "apple",
-    "hint": "A fruit"
+    "hint": "A fruit."
   },
   {
     "answer": "baseball",
-    "hint": "A sport"
+    "hint": "A sport."
   },
   {
     "answer": "museum",
-    "hint": "A building"
+    "hint": "A building."
   },
   {
     "answer": "vancouver",
-    "hint": "A city"
+    "hint": "A city."
   },
   {
     "answer": "canada",
-    "hint": "A country"
+    "hint": "A country."
+  },
+  {
+    "answer": "variable",
+    "hint": "A placeholder for a value."
+  },
+  {
+    "answer": "function",
+    "hint": "A block of code that performs a specific task."
+  },
+  {
+    "answer": "zebra",
+    "hint": "A animal."
   }
 ]

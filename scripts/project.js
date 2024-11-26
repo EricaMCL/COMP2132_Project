@@ -109,8 +109,6 @@ function resetAnswerHint() {
             const hangman_answer_array = hangman_answer.split('')
             for (let answer_char of hangman_answer_array) {
                 hangman_word.innerHTML += gameA.wordHTML(false, answer_char)
-                console.log(gameA.wordHTML(false, answer_char))
-
             }
         });
 }
@@ -157,7 +155,7 @@ function btnClicked(letterEntered) {
         correct_guesses++
     }
     hangman_word.innerHTML = hangman_word_updated
-    console.log(num_incorrect_guesses)
+    console.log("wrong guesses: " + num_incorrect_guesses)
     hangman_image.innerHTML = gameA.imageHTML(num_incorrect_guesses)
 
     if (correct_guesses === required_num_correct_guesses) {
